@@ -1,0 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@300&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: url("img/bg.jpg");
+  min-height: 100vh;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.header h4 {
+  color:#1905af;
+  margin-top:-28px;
+  display: flex;
+  font-weight: 700;
+  font-size: 2.4rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  justify-content: center;
+  
+
+}
+
+/* outer border */
+.app-main {
+  min-height: 50vh;
+  max-height: 92vh;
+  width: 30vw;
+  margin: 32px auto;
+  padding: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 15px;
+  /* background-color: rgba(255, 255, 255, 0.8); Change background color to white with some opacity */
+  background: rgba(6, 176, 237, 0);
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)
+  {
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(3px);
+  backdrop-filter: blur(0.5px); /* Add a slight blur to the background */
+  opacity: 0.9; /* Set opacity to 1 (fully opaque) */
+  }
+}
+
+/* talu uparaku margin */
+.app-main > * {
+  margin-bottom: 15px;
+  row-gap: 20;
+}
+
+.input-box {
+  width: 100%;
+  background: #ede9e9;
+  color: #e00c0c;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 0.5px;
+  text-align: center;
+  outline-color: #a5c613;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+
+.input-box {
+  border: 3px solid transparent; /* Add a transparent border */
+  transition: border 0.3s ease, transform 1s ease-in; /* Add transitions for border and transform */
+}
+
+.input-box:hover {
+  border: 4px solid rgba(12, 204, 38, 0.963); /* Increase the border width and change the color */
+  transform: scale(1.12) ; /* Add a scale effect */
+}
+
+
+.search-button {
+  background-color: hsla(121, 83%, 27%, 0.909); /* Set the background color */
+  color: #fff; /* Set the text color */
+  border: none;
+  border-radius: 8px;
+  margin-top: 1%;
+  padding: 5px 10px; /* Adjust padding for better button size */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect for background color change */
+}
+
+.search-button:hover {
+  background-color: #f20202; /* Change background color on hover */
+}
+
+.location-button {
+  background-color: hsla(121, 83%, 27%, 0.909); /* Set the background color */
+  color: #fff; /* Set the text color */
+  border: none;
+  border-radius: 8px;
+  margin-top: 1%;
+  padding: 5px 10px; /* Adjust padding for better button size */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect for background color change */
+}
+
+.location-button:hover {
+  background-color: #f20202; /* Change background color on hover */
+}
+
+/* rangeen dyniya */
+.weather-body {
+  color: #0b0a0a;
+  padding: 4px;
+  margin-top: 9%;
+  line-height: 32px;
+  border-radius: 15px;
+  background-color: #eff1f3;
+  display: none;
+  background-image: linear-gradient(to right top, #2274f0, #009aff, #00b5e6, #00c7a5, #24d258);
+  backdrop-filter: blur(0.2px); /* Add a slight blur to the background */
+  opacity: 1;
+}
+.location-deatils {
+  font-weight: bold;
+}
+.weather-status {
+  padding: 20px;
+}
+.temp {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 20px 0px;
+  text-shadow: 2px 4px rgba(0, 0, 0, 0.1);
+}
+.weather {
+  margin-top: 25px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.min-max {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 15px;
+}
+
+.day_details {
+  padding: 20px;
+}
+.sun-detail,
+.basic {
+  font-size: 1rem;
+}
+#weather-icon {
+  color: black;
+}
+
+
+@media screen and (max-width: 800px) {
+  .app-main {
+    width: 95%;
+    padding: 10px;
+  }
+  body {
+    min-height: 94vh;
+  }
+}
