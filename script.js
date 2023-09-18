@@ -122,31 +122,27 @@ function showWeaterReport(weather) {
     <div class="location-deatils">
         <div class="city" id="city">
         ${weather.name} , <img src="${flagApiUrl}" style="width: 20px; height: auto;">  ${weather.sys.country}
-         
         </div>
         <div class="date" id="date"> ${dateManage(todayDate)}</div>
-    </div>
+    </div>
+
     <div class="weather-status">
-        <div class="temp" id="temp">${Math.round(
-          weather.main.temp
-        )}&deg;C </div>
-        <div class="weather" id="weather"> ${
-          weather.weather[0].main
-        } <i class="${getIconClass(weather.weather[0].main)}"></i>  </div>
-        <div class="min-max" id="min-max">${Math.floor(
-          weather.main.temp_min
-        )}&deg;C (min) / ${Math.ceil(weather.main.temp_max)}&deg;C (max) </div>
-        <div id="updated_on">Updated as of ${getTime(todayDate)}</div>
+        <div class="temp" id="temp">${Math.round(weather.main.temp)}&deg;C </div> 
+        <div class="weather" id="weather"> ${weather.weather[0].main} 
+          <i class="${getIconClass(weather.weather[0].main)}"></i>  
+        </div>
+          <div class="min-max" id="min-max">${Math.floor(weather.main.temp_min)}&deg;C (Min) / ${Math.ceil(weather.main.temp_max)}&deg;C (Max) </div>
+          <div id="updated_on">Updated as of ${getTime(todayDate)}</div>
     </div>
+
     <hr style="border: 1px solid black; color: black;">
+
     <div class="day-details">
-        <div class="basic">Feels like ${
-          weather.main.feels_like
-        }&deg;C | Humidity ${weather.main.humidity}%  <br> Pressure ${
-      weather.main.pressure
-    } mb | Wind ${weather.wind.speed} KMPH</div>
-    </div>
-    `;
+        <div class="basic">Feels like ${weather.main.feels_like}&deg;C | Humidity ${weather.main.humidity}%  
+        <br> 
+        Pressure ${weather.main.pressure} Mb | Wind ${weather.wind.speed} Kmph</div>
+    </div>`;
+    
     parent.append(weather_body);
     changeBg(weather.weather[0].main);
     reset();
