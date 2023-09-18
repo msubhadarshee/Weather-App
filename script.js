@@ -25,10 +25,9 @@ locationButton.addEventListener("click", () => {
   }
 });
 
+// Fetching city name using latitude and longitude
 function getCityNameByCoordinates(latitude, longitude) {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApi.key}&units=metric`
-  )
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApi.key}&units=metric`)
     .then((weather) => {
       if (!weather.ok) {
         throw new Error(`Weather API Error: ${weather.status}`);
@@ -44,7 +43,9 @@ function getCityNameByCoordinates(latitude, longitude) {
     });
 }
 
-function getWeatherByCity(city) {
+try{
+function getWeatherByCity(city) 
+{
   fetch(`${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`)
     .then((weather) => {
       if (!weather.ok) {
@@ -52,56 +53,14 @@ function getWeatherByCity(city) {
       }
       return weather.json();
     })
-    .then(getWeatherReport(city))
-    .catch((error) => {
-      console.error("Error fetching weather data:", error);
-    });
-}
-
-//_______________________________________________________________________________________________________________
-//This part handles user interactions , it basically listens to 2 events , searchbutton and enterKey
-let searchButton = document.getElementById("search-button");
-let searchInputBox = document.getElementById("input-box");
-
-searchButton.addEventListener("click", () => {
-  const city = searchInputBox.value.trim(); //value gets the required value , trim used for removing white spaces.
-  if (city) {
-    getWeatherReport(city);
-  } else {
-    swal("Empty Input", "Please enter a city name", "error"); //swal-dialogue box with an error message
+    .then(showWeaterReport); // calling showWeatherReport function}
   }
-});
-
-searchInputBox.addEventListener("keypress", (event) => {
-  if (event.keyCode == 13) {
-    const city = searchInputBox.value.trim();
-    if (city) {
-      //gets the city from input box
-      getWeatherReport(city);
-    } else {
-      swal("Empty Input", "Please enter a city name", "error");
-    }
-  }
-});
-//__________________________________________________________________________________________________________
-
-//get waether report
-try {
-  function getWeatherReport(city) {
-    fetch(
-      `${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`
-    ) // fetch method fetching the data from  base url
-      .then((weather) => {
-        return weather.json(); // return data from api in JSON format
-      })
-      .then(showWeaterReport); // calling showWeatherReport function}
-  }
-} catch (err) {
+}catch (err) {
   console.log("Error Occured!", err);
 }
-//___________________________________________________________________________________________________________________
+//_______________________________________________________________________________________________________________
 
-//show weather report
+//show weather report function
 function showWeaterReport(weather) {
   let city_code = weather.cod;
   if (city_code === "400") {
@@ -142,12 +101,42 @@ function showWeaterReport(weather) {
         <br> 
         Pressure ${weather.main.pressure} Mb | Wind ${weather.wind.speed} Kmph</div>
     </div>`;
-    
+
     parent.append(weather_body);
     changeBg(weather.weather[0].main);
     reset();
   }
 }
+
+//_______________________________________________________________________________________________________________
+
+//This part handles user interactions , it basically listens to 2 events , searchbutton and enterKey
+let searchButton = document.getElementById("search-button");
+let searchInputBox = document.getElementById("input-box");
+
+searchButton.addEventListener("click", () => {
+  const city = searchInputBox.value.trim(); //value gets the required value , trim used for removing white spaces.
+  if (city) {
+    getWeatherByCity(city);
+  } else {
+    swal("Empty Input", "Please enter a city name", "error"); //swal-dialogue box with an error message
+  }
+});
+
+searchInputBox.addEventListener("keypress", (event) => {
+  if (event.keyCode == 13) {
+    const city = searchInputBox.value.trim();
+    if (city) {
+      //gets the city from input box
+      getWeatherByCity(city);
+    } else {
+      swal("Empty Input", "Please enter a city name", "error");
+    }
+  }
+});
+//__________________________________________________________________________________________________________
+
+
 //_________________________________________________________________________________________________________________
 
 //making a function for the  last update current time
