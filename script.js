@@ -102,8 +102,11 @@ function showWeaterReport(weather) {
         Pressure ${weather.main.pressure} Mb | Wind ${weather.wind.speed} Kmph</div>
     </div>`;
 
+
+    // adds weather detail to main body
     parent.append(weather_body);
-    changeBg(weather.weather[0].main);
+    // weather status passed as a parameter to change bg
+    changeBg(weather.weather[0].main); 
     reset();
   }
 }
@@ -135,9 +138,6 @@ searchInputBox.addEventListener("keypress", (event) => {
   }
 });
 //__________________________________________________________________________________________________________
-
-
-//_________________________________________________________________________________________________________________
 
 //making a function for the  last update current time
 function getTime(todayDate) {
@@ -173,11 +173,11 @@ function dateManage(dateArg) {
     "December",
   ];
 
+  //dateArg uses Today's date to fetch day month year
   let year = dateArg.getFullYear();
   let month = months[dateArg.getMonth()];
   let date = dateArg.getDate();
   let day = days[dateArg.getDay()];
-  // console.log(year+" "+date+" "+day+" "+month);
   return `${date} ${month} (${day}) , ${year}`;
 }
 //__________________________________________________________________________________________________________
